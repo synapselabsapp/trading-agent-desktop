@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Agent Help | Synapse Labs</title>
+  <link rel="icon" href="../assets/images/Favicon Synapse Labs.ico" type="image/x-icon">
+  <style>
+    :root { color-scheme: dark; --pink:#eb3568; --purple:#d41fc8; --violet:#762cf5; --cyan:#00faff; --green:#00fa6e; --ink:#f8fafc; --muted:#94a3b8; --line:rgba(255,255,255,.12); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { min-width:320px; margin:0; color:var(--ink); background:#07070b; font-family:Inter,Segoe UI,Arial,sans-serif; overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; z-index:-2; background:radial-gradient(circle at 80% 5%,rgba(118,44,245,.19),transparent 32%),radial-gradient(circle at 8% 80%,rgba(235,53,104,.13),transparent 30%),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px); background-size:auto,auto,34px 34px,34px 34px; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    .site-header { position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:80px; padding:0 2rem; border-bottom:1px solid rgba(255,255,255,.1); background:rgba(5,5,8,.86); backdrop-filter:blur(14px); }
+    .brand { display:flex; align-items:center; flex:0 0 auto; }
+    .brand img { width:132px; height:auto; display:block; }
+    .site-nav { display:flex; align-items:center; justify-content:center; gap:1.8rem; color:#94a3b8; font-size:.82rem; font-weight:600; }
+    .site-nav a:hover, .site-nav a.active { color:var(--pink); }
+    .header-actions { display:flex; align-items:center; gap:1rem; color:#94a3b8; font-size:.72rem; font-weight:800; }
+    .login-link { padding:.75rem 1.4rem; border-radius:6px; color:#08080c; background:linear-gradient(135deg,#eb3568,#d41fc8); box-shadow:0 8px 25px rgba(235,53,104,.25); }
+    .help-page-main { position:relative; z-index:1; padding:3.8rem 1.25rem 4rem; }
+    .help-page-shell { max-width:1180px; margin:0 auto; padding:2rem; border:1px solid rgba(255,255,255,.12); border-radius:22px; background:rgba(8,8,12,.88); box-shadow:0 24px 90px rgba(0,0,0,.35); }
+    .help-page-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:1.2rem; }
+    .help-page-heading .eyebrow, .help-copy .eyebrow { color:var(--pink); font-weight:800; letter-spacing:.12em; }
+    .help-page-heading h1 { margin:.35rem 0 .55rem; color:#fff; font-size:clamp(2rem,4vw,3.35rem); font-weight:900; letter-spacing:-.04em; }
+    .help-page-heading p { max-width:780px; margin:0; color:#cbd5e1; font-size:.92rem; line-height:1.65; }
+    .help-back-link { flex:0 0 auto; padding:.7rem 1rem; border:1px solid rgba(0,250,255,.35); border-radius:999px; color:#a5f3fc; background:rgba(0,250,255,.07); font-size:.75rem; font-weight:800; white-space:nowrap; }
+    .help-back-link:hover { border-color:rgba(0,250,255,.75); color:#fff; background:rgba(0,250,255,.14); }
+    .help-lead { margin:0; max-width:960px; color:#cbd5e1; font-size:.82rem; line-height:1.65; }
+    .help-sections { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-top:1.25rem; }
+    .help-section { display:grid; align-content:start; gap:.8rem; min-width:0; padding:1rem; border:1px solid rgba(255,255,255,.12); border-radius:14px; background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(118,44,245,.07)); }
+    .help-section-wide { grid-column:1 / -1; grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr); align-items:start; }
+    .help-figure { min-width:0; margin:0; }
+    .help-figure img { display:block; width:100%; max-height:280px; border:1px solid rgba(0,250,255,.24); border-radius:9px; background:#09080d; object-fit:contain; object-position:top left; }
+    .help-section-wide .help-figure img { max-height:220px; }
+    .help-figure figcaption { margin-top:.4rem; color:#64748b; font-size:.58rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .help-copy { min-width:0; }
+    .help-copy h3 { margin:.35rem 0 .6rem; color:#f8fafc; font-size:1.08rem; line-height:1.28; }
+    .help-copy p { margin:0 0 .65rem; color:#cbd5e1; font-size:.74rem; line-height:1.6; }
+    .help-copy p:last-child { margin-bottom:0; }
+    .help-details { display:grid; gap:.65rem; margin:0; }
+    .help-details div { padding-top:.65rem; border-top:1px solid rgba(255,255,255,.08); }
+    .help-details dt { color:#a5f3fc; font-size:.7rem; font-weight:800; }
+    .help-details dd { margin:.22rem 0 0; color:#94a3b8; font-size:.7rem; line-height:1.5; }
+    .help-bullets { display:grid; gap:.35rem; margin:.6rem 0 0; padding-left:1.15rem; color:#94a3b8; font-size:.7rem; line-height:1.5; }
+    .help-bullets li::marker { color:var(--pink); }
+    .help-parameter-list { grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:1.5rem; }
+    .help-note { color:#a5f3fc !important; }
+    .site-footer { padding:4rem 2rem 2.5rem; border-top:1px solid rgba(255,255,255,.1); background:rgba(0,0,0,.88); color:#94a3b8; }
+    .footer-grid { display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:2rem; max-width:1180px; margin:0 auto; }
+    .footer-brand img { width:118px; margin-bottom:1rem; }
+    .footer-brand p, .footer-column a { color:#94a3b8; font-size:.78rem; line-height:1.6; }
+    .footer-column h2 { margin:0 0 1rem; color:#cbd5e1; font-size:.82rem; }
+    .footer-column { display:grid; align-content:start; gap:.5rem; }
+    .footer-column a:hover { color:#fff; }
+    .disclaimer { max-width:980px; margin:2.5rem auto 0; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,.1); color:#64748b; font-size:.68rem; line-height:1.6; text-align:center; }
+    @media (max-width:820px) { .site-header { padding:0 1rem; } .site-nav { display:none; } .header-actions { gap:.6rem; } .login-link { padding:.6rem .85rem; } .help-page-main { padding:2rem .65rem 3rem; } .help-page-shell { padding:1rem; border-radius:14px; } .help-page-heading { display:grid; align-items:start; gap:1rem; } .help-back-link { justify-self:start; } .help-sections { grid-template-columns:1fr; } .help-section-wide { grid-column:auto; grid-template-columns:1fr; } .help-parameter-list { grid-template-columns:1fr; } .footer-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:480px) { .brand img { width:112px; } .header-actions span { display:none; } .footer-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/renderer/index.html" aria-label="Synapse Labs"><img src="../assets/images/Logo Synapse Labs new.png" alt="Synapse Labs"></a>
+    <nav class="site-nav" aria-label="Main navigation">
+    </nav>
+    <div class="header-actions"><a class="login-link" href="/renderer/index.html" aria-label="Back to App" onclick="if (location.pathname.startsWith('/renderer/')) { location.href = '/renderer/index.html'; } else if (history.length > 1) { history.back(); } return false;">Back to Trading Agent</a>
+  </header>
+  <main class="help-page-main">
+  <section class="help-page-shell">
+<div class="help-page-heading">
+  <div>
+    <span class="eyebrow">SYNAPSE LABS · TRADING AGENT GUIDE</span>
+    <h1>How every function works</h1>
+    <p>Una guía completa de las funciones visibles de Trading Agent, basada en la interfaz real de la aplicación.</p>
+  </div>
+</div>
+<p class="help-lead">This guide follows the exact controls visible in your Synapse Trading Agent window. Each section explains what the control does, when to use it, what it reads or changes, and what it does not do.</p>
+
+      <div class="help-sections">
+        <section class="help-section help-section-wide">
+          <figure class="help-figure"><img src="/../assets/images/help/toolbar.png" alt="Recorte real de la barra superior con Local Only, refresh, API Setup y Agent Setup"><figcaption>Recorte real · barra superior</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">01 · CONTROL CENTER</span><h3>Barra superior: estado, refresh y configuración</h3>
+            <p><strong>LOCAL ONLY</strong> confirma que esta aplicación trabaja desde este equipo y no usa un servidor Synapse intermedio para leer tu exchange.</p>
+            <dl class="help-details">
+              <div><dt>↻ Refresh live data</dt><dd>Vuelve a consultar balance, capital, valor total, posiciones y órdenes del exchange seleccionado. Solo puede traer datos si ya guardaste credenciales.</dd></div>
+              <div><dt>API Setup</dt><dd>Abre la pantalla para guardar, actualizar o eliminar las credenciales locales cifradas del exchange activo. El formulario nunca muestra el secreto real una vez guardado.</dd></div>
+              <div><dt>Agent Setup</dt><dd>Abre la comprobación del runtime local de Hermes Agent y las preferencias de Arrow. Desde allí puedes verificar la instalación y personalizar tono o enfoque sin cambiar la política base.</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/exchange.png" alt="Recorte real del selector Active Exchange en Coinbase"><figcaption>Recorte real · exchange activo</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">02 · CONNECTION SCOPE</span><h3>Active Exchange</h3>
+            <p>Selecciona la cuenta que Synapse debe consultar: Binance Global, Binance US o Coinbase. El cambio de exchange vuelve a cargar sus parámetros, estado de credenciales, monitor y datos de cuenta de forma independiente.</p>
+            <ul class="help-bullets"><li>La selección no ejecuta órdenes.</li><li>Las credenciales se guardan separadas por exchange.</li><li>El icono identifica visualmente el exchange activo.</li></ul>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/ai-mode.png" alt="Recorte real de la tarjeta AI Assistance con el interruptor de Arrow"><figcaption>Recorte real · AI Assistance</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">03 · ASSISTANCE MODE</span><h3>AI Agent (Arrow)</h3>
+            <p>El interruptor activa o desactiva la asistencia de Arrow dentro del chat lateral. Cuando está activo, Arrow puede analizar el estado no secreto mostrado por Synapse y proponer controles que ya existen en la interfaz.</p>
+            <ul class="help-bullets"><li>Arrow no abre posiciones ni crea operaciones nuevas.</li><li>Puede sugerir cambios de parámetros o del monitor mediante controles validados.</li><li>Si Hermes no está listo, el chat permanece bloqueado y te lleva a Agent Setup.</li></ul>
+          </div>
+        </section>
+
+        <section class="help-section help-section-wide">
+          <figure class="help-figure"><img src="/../assets/images/help/monitor.png" alt="Recorte real del monitor local con estado Ready y botones Start y Stop"><figcaption>Recorte real · monitor de posiciones</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">04 · LOCAL POSITION MONITOR</span><h3>Start y Stop</h3>
+            <p>El monitor consulta periódicamente el exchange desde este computador para mantener actualizado el tablero. No es un motor de trading: no abre entradas ni lanza estrategias automáticamente.</p>
+            <dl class="help-details">
+              <div><dt>Start</dt><dd>Inicia la lectura local del exchange activo. Después actualiza la cuenta y marca el estado como RUNNING.</dd></div>
+              <div><dt>Stop</dt><dd>Detiene las consultas periódicas del monitor. No borra credenciales, parámetros ni datos ya mostrados.</dd></div>
+              <div><dt>READY / OFFLINE</dt><dd>READY significa que hay credenciales disponibles y el monitor está detenido; OFFLINE indica que falta configuración local.</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/parameters.png" alt="Recorte real del panel Parameters con los valores visibles y el botón Configure"><figcaption>Recorte real · Parameters</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">05 · BOT CONFIGURATION</span><h3>Parameters y Configure</h3>
+            <p>El panel lateral es un resumen vivo de los 12 valores guardados para el exchange activo. <strong>Configure</strong> abre el formulario editable; al guardar, los valores se almacenan localmente para ese exchange.</p>
+            <ul class="help-bullets help-parameter-list"><li>Position update interval (ms): frecuencia de actualización.</li><li>Take profit percentage of capital: umbral de take profit del capital.</li><li>DCA relative percentage: proporción base de DCA.</li><li>DCA distance multipliers: distancias de cada nivel, por ejemplo [1, 2].</li><li>Stop-loss distance multiplier: multiplicador de distancia del stop-loss.</li><li>DCA quantity increment (%): incremento de cantidad por nivel.</li><li>Minimum DCA distance (%): distancia mínima antes de otro DCA.</li><li>Maximum open positions: límite de posiciones abiertas.</li><li>Stop-loss percentage: porcentaje de stop-loss.</li><li>DCA percentage increment: aumento porcentual entre niveles.</li><li>Breakeven ROI threshold: ROI a partir del cual se considera breakeven.</li><li>Auto-shutdown (minutes): minutos hasta detener el monitor automáticamente.</li></ul>
+            <p class="help-note">Estos valores se muestran y persisten localmente. Por sí solos no convierten al monitor en un ejecutor de órdenes.</p>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/metrics.png" alt="Recorte real de las tarjetas Account Balance, Available Capital, Total Value y Open Positions"><figcaption>Recorte real · métricas</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">06 · ACCOUNT SNAPSHOT</span><h3>Account Balance, Available Capital, Total Value y Open Positions</h3>
+            <p>Estas tarjetas son una lectura resumida del último snapshot recibido del exchange.</p>
+            <dl class="help-details"><div><dt>Account Balance</dt><dd>Balance de la cuenta según el exchange y el mercado mostrado.</dd></div><div><dt>Available Capital</dt><dd>Capital disponible para operar o margen libre, según la integración activa.</dd></div><div><dt>Total Value</dt><dd>Valor total calculado a partir de los datos normalizados disponibles.</dd></div><div><dt>Open Positions</dt><dd>Número de posiciones abiertas; debajo se indica el mercado, como SPOT o PERPETUALS.</dd></div></dl>
+          </div>
+        </section>
+
+        <section class="help-section help-section-wide">
+          <figure class="help-figure"><img src="/../assets/images/help/exchange-data.png" alt="Recorte real de Direct Exchange Data con las pestañas Open positions y Pending Orders"><figcaption>Recorte real · datos directos del exchange</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">07 · DIRECT EXCHANGE DATA</span><h3>Open positions, Pending Orders y Close position</h3>
+            <p>Esta zona muestra la respuesta directa normalizada del exchange seleccionado, no datos inventados por Arrow.</p>
+            <ul class="help-bullets"><li><strong>Open positions:</strong> lista símbolo, lado, tamaño, entrada, precio mark, PnL no realizado y riesgo.</li><li><strong>Pending Orders:</strong> cambia a las órdenes pendientes y muestra símbolo, lado, tipo, precio, cantidad, estado y Reduce Only.</li><li><strong>Select:</strong> marca una posición concreta para una acción posterior.</li><li><strong>Close position:</strong> permanece deshabilitado hasta seleccionar una posición; después exige confirmación y valida de nuevo que la posición siga abierta y conserve la misma cantidad.</li></ul>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/activity.png" alt="Recorte real de Local Event Stream y la lista Activity"><figcaption>Recorte real · Activity</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">08 · LOCAL EVENT STREAM</span><h3>Activity y Clear</h3>
+            <p>Activity registra eventos importantes del uso local: inicio o detención del monitor, cambios guardados, respuestas de Arrow, errores y acciones realizadas.</p>
+            <ul class="help-bullets"><li>El punto verde identifica eventos correctos.</li><li>El punto rosa marca avisos o detenciones.</li><li>El punto rojo indica errores.</li><li><strong>Clear</strong> limpia la lista visible; no borra credenciales, parámetros ni el estado del exchange.</li></ul>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/arrow-agent.png" alt="Recorte real del panel Arrow Agent con el estado LIVE y su explicación"><figcaption>Recorte real · Arrow Agent</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">09 · RISK ASSISTANCE</span><h3>Arrow Agent: análisis dentro de Synapse</h3>
+            <p>El panel derecho es el espacio de conversación de Arrow. Recibe el snapshot actual no secreto de posiciones, órdenes, métricas, exchange y parámetros para ayudarte a interpretar riesgo y estado.</p>
+            <ul class="help-bullets"><li>LIVE significa que Arrow está habilitado y Hermes está listo.</li><li>STANDBY significa que está apagado o falta completar Agent Setup.</li><li>Las acciones propuestas solo usan controles permitidos por Synapse y se aplican desde botones visibles.</li></ul>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/arrow-chat.png" alt="Recorte real del cuadro de chat de Arrow Agent y el botón Send"><figcaption>Recorte real · chat de Arrow</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">10 · CONVERSATION</span><h3>Pregunta a Arrow y Send</h3>
+            <p>Escribe una pregunta sobre el estado actual y pulsa <strong>Send</strong>. También puedes pulsar Enter para enviar; Shift+Enter conserva un salto de línea.</p>
+            <ul class="help-bullets"><li>El contador indica cuántas posiciones se incluyen en el contexto.</li><li>El historial reciente se conserva dentro de la conversación para preguntas de seguimiento.</li><li>Arrow no recibe claves API, secretos, tokens ni la clave privada de Coinbase.</li><li>Si solicita una acción, Synapse la valida y muestra el resultado en Activity.</li></ul>
+          </div>
+        </section>
+
+        <section class="help-section">
+          <figure class="help-figure"><img src="/../assets/images/help/runtime.png" alt="Recorte real del indicador Local runtime y el texto Local encrypted Desktop source"><figcaption>Recorte real · runtime local</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">11 · LOCAL SAFETY STATE</span><h3>Local runtime</h3>
+            <p>La línea inferior del rail resume el entorno activo: exchange seleccionado, estado local y origen de escritorio.</p>
+            <ul class="help-bullets"><li>El punto verde indica que la interfaz local está disponible.</li><li><strong>Local runtime · [exchange]</strong> confirma el exchange actualmente seleccionado.</li><li><strong>LOCAL ENCRYPTED · DESKTOP SOURCE</strong> recuerda que las credenciales se protegen con el almacenamiento seguro de Windows y que la app corre desde el escritorio.</li></ul>
+          </div>
+        </section>
+      </div>
+  </section>
+</main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="/renderer/index.html"><img src="../assets/images/Logo Synapse Labs grey.png" alt="Synapse Labs Logo"></a><p>© 2025 Synapse Labs Inc.<br>All rights reserved.</p></div>
+    </div>
+    <p class="disclaimer">Disclaimer: The companies and technologies mentioned on this site, including but not limited to OpenAI, Claude, Hermes, Coinbase, and Binance, are listed for informational purposes to describe our technical integrations. They are not commercial partners, sponsors, and are not affiliated with Synapse Labs in any way. All trademarks, logos, and brand names are the property of their respective owners.</p>
+  </footer>
+</body>
+</html>

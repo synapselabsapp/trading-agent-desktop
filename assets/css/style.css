@@ -1,0 +1,792 @@
+/* SYNAPSE LABS - GLOBAL STYLES
+   Diseño: Glassmorphism + Modern Web3
+   ============================================================================
+   INDICE DE SECCIONES (linea ~ donde empieza cada bloque)
+   ----------------------------------------------------------------------------
+   1.  HEADER/FOOTER hovers (theme/lang/X logo)        -> todas las paginas
+   2.  Tipografia base (body, h1-h6)                   -> global
+   3.  Video de fondo + overlay                        -> global (hero)
+   4.  Sistema Glassmorphism (.glass-card)             -> cards en todas
+                                                            las paginas
+   5.  Header glass (.header-bg)                       -> nav superior
+                                                            global
+   6.  Footer glass (.footer-glass)                    -> footer global
+                                                            (siempre
+                                                            oscuro)
+   7.  Paleta de colores (.main-text, .secondary-text) -> textos tematizados
+                                                            global
+   8.  Animaciones y keyframes (colorCycle, wave)      -> hero (index.html)
+   9.  Gradient text/bg (.primary-gradient-*)          -> CTAs, botones
+                                                            primarios
+   10. Botones (.secondary-button)                     -> CTAs secundarios
+                                                            (tematizados)
+   11. Componentes FAQ/Roadmap (details, .roadmap-line)-> index.html
+                                                            (Roadmap,
+                                                            FAQ)
+   12. Vibrant Blocks System (.vibrant-card + colores) -> index.html
+                                                            (Ecosystem
+                                                            cards),
+                                                            Holders.html
+   13. AI Typing Effect (.ai-terminal, .typewriter)    -> index.html
+                                                            (terminal
+                                                            animado del
+                                                            hero)
+   14. 3D Carousel (.carousel-scene)                   -> index.html
+                                                            (showcase
+                                                            productos),
+                                                            Holders.html
+   ============================================================================
+   PAGINAS QUE IMPORTAN ESTE CSS:
+   - index.html                (todo: hero, ecosystem, terminal, carousel)
+   - pages/Holders.html        (carousel + vibrant cards + animated-dots)
+   - pages/About.html, heatmap.html, Holders.html, Image_Converter.html,
+     News.html, NFT_Rarity_Viewer.html, Nft_Synapse_Studio.html, select.html
+                                (comparten glass-card + footer-glass +
+                                 main/secondary-text)
+   ============================================================================
+*/
+
+/* --- 1. HEADER/FOOTER hovers (theme/lang/X logo) --- */
+        /* Efecto hover para enlaces de texto en header y footer */
+        header nav a, footer ul a, footer p a {
+            transition: all 0.3s ease !important;
+            display: inline-block;
+        }
+
+        header nav a:hover, footer ul a:hover, footer p a:hover {
+            transform: scale(1.15);
+            color: #eb3568 !important;
+        }
+
+        /* Efecto hover para Logo, botones de Tema, Idioma y X */
+        header a.group:hover img, footer a.group:hover img {
+            transform: scale(1.15) !important;
+        }
+
+        header a[href*="x.com"], footer a[href*="x.com"] {
+            transition: all 0.3s ease !important;
+            display: inline-block;
+        }
+
+        #theme-toggle, #lang-toggle {
+            transition: all 0.3s ease !important;
+            -webkit-tap-highlight-color: transparent;
+            background: transparent !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        #theme-toggle:hover, #lang-toggle:hover,
+        #theme-toggle:focus, #lang-toggle:focus,
+        #theme-toggle:active, #lang-toggle:active,
+        #theme-toggle:focus-visible, #lang-toggle:focus-visible {
+            transform: scale(1.15) !important;
+            color: #eb3568 !important;
+            background-color: transparent !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            outline: none !important;
+            border-color: transparent !important;
+        }
+        
+        header a[href*="x.com"]:hover, footer a[href*="x.com"]:hover {
+            transform: scale(1.15) !important;
+            color: #eb3568 !important;
+        }
+
+        /* --- 2. Tipografia base (body, h1-h6) --- */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- 3. Video de fondo + overlay --- */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            object-fit: cover;
+        }
+
+        /* Superposición para legibilidad */
+        .video-overlay {
+            position: fixed;
+            inset: 0;
+             background: linear-gradient(to bottom, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58));
+            z-index: -99;
+            transition: background 0.3s ease;
+        }
+
+        /* CORRECCIÓN MODO OSCURO: Fondo más oscuro */
+        .dark .video-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.92));
+        }
+
+        /* --- Sistema Glassmorphism (Tarjetas de Cristal) --- */
+        .glass-card {
+            background: rgba(190, 190, 190, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dark .glass-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(174, 0, 255, 0.404);
+            border-color: rgba(185, 68, 239, 0.55);
+        }
+
+        /* --- 5. Header glass (.header-bg) --- */
+        .header-bg {
+            background: rgba(0, 0, 0, 0.062);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .header-bg {
+            background: rgba(0, 0, 0, 0.438);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- 6. Footer glass (.footer-glass) --- */
+        .footer-glass {
+            background: rgba(0, 0, 0, 0.87);
+            /* Slate 900 casi sólido */
+            backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #eb3568;
+            /* Texto base rojo */
+        }
+
+        /* --- 7. Paleta de colores (.main-text, .secondary-text) --- */
+        .main-text {
+            color: #505050;
+        }
+
+        .dark .main-text {
+            color: #ffffff;
+            /* Blanco puro en modo oscuro */
+            text-shadow: 0 0 20px rgba(255, 77, 77, 0.2);
+            /* Sutil brillo */
+        }
+
+        .secondary-text {
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .dark .secondary-text {
+            color: #CBD5E1;
+            /* Slate 300 - Claro y legible */
+            font-weight: 400;
+        }
+
+        /* --- 8. Animaciones y keyframes (colorCycle, wave) --- */
+        @keyframes colorCycle {
+            0% {
+                background-position: 0% 70%;
+            }
+
+            50% {
+                background-position: 100% 70%;
+            }
+
+            100% {
+                background-position: 0% 70%;
+            }
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(to right, #5e5e5e, #c2c2c2, #5e5e5e);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: colorCycle 8s ease-in-out infinite;
+            display: block;
+        }
+
+        @keyframes waveAnimation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            15% {
+                transform: rotate(10deg);
+            }
+
+            30% {
+                transform: rotate(-10deg);
+            }
+
+            45% {
+                transform: rotate(10deg);
+            }
+
+            60% {
+                transform: rotate(-10deg);
+            }
+
+            75%,
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .animate-wave {
+            animation: waveAnimation 2.5s ease-in-out infinite;
+            transform-origin: center bottom;
+        }
+
+        /* --- 9. Gradient text/bg (.primary-gradient-*) --- */
+        .primary-gradient-text {
+            /* Define el degradado base */
+            background: linear-gradient(135deg, #00fa6e 0%, #00faff 100%);
+            /* Recorta el fondo a la forma del texto */
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* Hace el texto transparente para ver el fondo */
+            color: transparent;
+            /* Asegura que inline-block o block se comporten bien con el clip */
+            display: inline-block;
+        }
+
+        .dark .primary-gradient-text {
+            /* CORRECCIÓN CRÍTICA: Usar 'background-image' en lugar de 'background' para NO resetear el clip */
+            background-image: linear-gradient(135deg, #00fa6e 0%, #00faff 100%);
+            /* Eliminamos la sombra en el texto degradado para que se vea nítido */
+            text-shadow: none;
+        }
+
+        .primary-gradient-bg {
+            background: linear-gradient(170deg, #eb3568 65%, #d41fc8 90%, #762cf5 100%);
+            transition: opacity 0.9s;
+        }
+
+        .primary-gradient-bg:hover {
+            opacity: 0.9;
+        }
+
+        /* --- 10. Botones (.secondary-button) --- */
+        .secondary-button {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            color: #1e293b;
+            transition: all 0.2s;
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #eb3568;
+            color: #eb3568;
+        }
+
+        .dark .secondary-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .dark .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #eb3568;
+        }
+
+        /* --- 11. Componentes FAQ/Roadmap (details, .roadmap-line) --- */
+        details summary {
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] summary~* {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .roadmap-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #00fa6e 20%, #00faff 80%, transparent);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-line {
+                left: 20px;
+            }
+        }
+
+        /* --- 12. Vibrant Blocks System (.vibrant-card + colores) ---
+           Colores por variante (ojo: el nombre de la clase NO matchea el
+           color visual, son identificadores de slot):
+             .vibrant-yellow -> NFT Studio / Creator  (gradiente violeta)
+             .vibrant-blue   -> Trading Bot            (gradiente verde)
+             .vibrant-indigo -> Token Creator / Security / Dashboard (rojo)
+             .vibrant-pink   -> Rarity Viewer          (rojo -> verde)
+             .vibrant-amber  -> Image Converter        (verde -> rojo)
+             .vibrant-gray   -> Coming Soon / Dashboard (gris neutro)
+        */
+        .vibrant-card {
+            position: relative;
+            height: 100%;
+            min-height: 350px;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+            /* Text Color Default (Dark Tone) */
+            color: #F3F4F6;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+        }
+
+        .vibrant-card:hover {
+            transform: translateY(-8px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .vibrant-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+            transition: color 0.4s ease-in-out;
+        }
+
+        .vibrant-card p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        /* --- Color Variants (Tone on Tone) --- */
+
+        /* Vibrant Purple (NFT Studio / Creator) */
+        .vibrant-yellow {
+            background-color: rgba(139, 92, 246, 0.08);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 4px 30px rgba(139, 92, 246, 0.05);
+        }
+
+        .vibrant-yellow.active,
+        .vibrant-yellow:hover {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(109, 40, 217, 0.9) 100%);
+            color: #ffffff;
+            border-color: rgba(139, 92, 246, 0.8);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .vibrant-yellow h3 {
+            color: #d8b4fe;
+        }
+
+        .vibrant-yellow.active h3,
+        .vibrant-yellow:hover h3 {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Vibrant Green (Trading Bot) */
+        .vibrant-blue {
+            background-color: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+        }
+
+        .vibrant-blue.active,
+        .vibrant-blue:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(4, 120, 87, 0.9) 100%);
+            color: #ffffff;
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .vibrant-blue h3 {
+            color: #a7f3d0;
+        }
+
+        .vibrant-blue.active h3,
+        .vibrant-blue:hover h3 {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Vibrant Red (Token Creator / Security / Dashboard) */
+        .vibrant-indigo {
+            background-color: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            box-shadow: 0 4px 30px rgba(239, 68, 68, 0.05);
+        }
+
+        .vibrant-indigo.active,
+        .vibrant-indigo:hover {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(239, 68, 68, 0.9) 60%, rgba(185, 28, 28, 0.9) 100%);
+            color: #ffffff;
+            border-color: rgba(239, 68, 68, 0.8);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .vibrant-indigo h3 {
+            color: #fca5a5;
+        }
+
+        .vibrant-indigo.active h3,
+        .vibrant-indigo:hover h3 {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Vibrant Red-Green Gradient (Rarity Viewer) */
+        .vibrant-pink {
+            background-color: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            box-shadow: 0 4px 30px rgba(239, 68, 68, 0.05);
+        }
+
+        .vibrant-pink.active,
+        .vibrant-pink:hover {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.85) 0%, rgba(239, 68, 68, 0.85) 60%, rgba(16, 185, 129, 0.85) 100%);
+            color: #ffffff;
+            border-color: rgba(239, 68, 68, 0.6);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .vibrant-pink h3 {
+            color: #fca5a5;
+        }
+
+        .vibrant-pink.active h3,
+        .vibrant-pink:hover h3 {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Vibrant Green-Red Gradient (Image Converter) */
+        .vibrant-amber {
+            background-color: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            box-shadow: 0 4px 30px rgba(16, 185, 129, 0.05);
+        }
+
+        .vibrant-amber.active,
+        .vibrant-amber:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(239, 68, 68, 0.85) 60%, rgba(239, 68, 68, 0.85) 100%);
+            color: #ffffff;
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .vibrant-amber h3 {
+            color: #a7f3d0;
+        }
+
+        .vibrant-amber.active h3,
+        .vibrant-amber:hover h3 {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Vibrant Gray (Coming Soon/Dashboard) */
+        .vibrant-gray {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+        }
+
+        .vibrant-gray.active,
+        .vibrant-gray:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #f1f5f9;
+        }
+
+        /* Pill Buttons Design */
+        .vibrant-btn {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-radius: 9999px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            width: fit-content;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Button turns solid dark on colored background */
+        .vibrant-card.active .vibrant-btn,
+        .vibrant-card:hover .vibrant-btn {
+            background-color: #0f172a;
+            border-color: #0f172a;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .vibrant-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* SVG Icons Color Transition */
+        .vibrant-card svg {
+            color: rgba(255, 255, 255, 0.4);
+            transition: all 0.5s ease;
+        }
+
+        .vibrant-card:hover svg {
+            color: #ffffff;
+            transform: rotate(370deg) scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+        }
+
+        .vibrant-card.active svg {
+            color: #ffffff;
+        }
+
+        /* Decorative Elements */
+        .vibrant-shape {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 100px;
+            height: 100px;
+            opacity: 0.8;
+        }
+
+        /* --- 13. AI Typing Effect (.ai-terminal, .typewriter) --- */
+        .ai-terminal {
+            background-color: #0f172a;
+            /* Slate 900 */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.875rem;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background-color: #ef4444;
+        }
+
+        .dot-yellow {
+            background-color: #eab308;
+        }
+
+        .dot-green {
+            background-color: #22c55e;
+        }
+
+        .ai-terminal-title {
+            color: #94a3b8;
+            /* Slate 400 */
+            font-size: 0.75rem;
+            margin-left: 8px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .typewriter-text {
+            color: #10b981;
+            /* Default intense green */
+            white-space: pre-wrap;
+            line-height: 1.6;
+            font-size: 1.15rem;
+            /* Increased size */
+            font-weight: 500;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+            /* Glow effect for intensity */
+        }
+
+        .typewriter-text.text-blue {
+            color: #10B981;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .typewriter-text.text-indigo {
+            color: #EF4444;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+        }
+
+        .typewriter-text.text-purple {
+            color: #ef4444;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+        }
+
+        .typewriter-text.text-teal {
+            color: #10B981;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .blinking-cursor::after {
+            content: '█';
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+            opacity: 0.8;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Scan Line Effect */
+        .ai-terminal::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Animated Thinking Dots for Titles */
+        .animated-dots::after {
+            content: '';
+            animation: animateDots 1.5s infinite steps(4, end);
+            display: inline-block;
+            width: 1.5em;
+            /* Ensure fixed width so text doesn't shake */
+            text-align: left;
+        }
+
+        @keyframes animateDots {
+            0% {
+                content: '';
+            }
+
+            25% {
+                content: '.';
+            }
+
+            50% {
+                content: '..';
+            }
+
+            75% {
+                content: '...';
+            }
+
+            100% {
+                content: '...';
+            }
+        }
+
+        /* --- 14. 3D Carousel (.carousel-scene) --- */
+        .carousel-scene {
+            perspective: 1500px;
+            /* High perspective for subtle 3D */
+            width: 100%;
+            height: 400px;
+            /* Adjust based on card height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-scene {
+                height: 550px;
+            }
+        }
+
+        .carousel-container {
+            width: 90%;
+            max-width: 830px;
+            /* Width of front card (Increased by 40%) */
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* transition opacity to subtly dim cards not in front */
+            transition: opacity 0.5s, filter 0.5s, visibility 0.5s;
+        }

@@ -1,0 +1,10 @@
+node_modules/
+*.log
+.env
+.env.*
+.local/
+config.json
+coverage/
+backup/
+# No se genera dist/: esta aplicación se ejecuta desde fuente.
+dist/
