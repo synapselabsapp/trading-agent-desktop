@@ -1,3 +1,5 @@
+![Synapse Labs](assets/logo-synapse.png)
+
 # Synapse Labs Trading Bot Desktop
 
 Repositorio público: https://github.com/synapselabsapp/trading-agent-desktop
