@@ -2,99 +2,99 @@
 
 # Synapse Labs Trading Bot Desktop
 
-Repositorio público: https://github.com/synapselabsapp/trading-agent-desktop
+Public repository: https://github.com/synapselabsapp/trading-agent-desktop
 
-Aplicación Electron autocontenida ejecutada desde código fuente. Funciona como una ventana de escritorio y no como PWA o página abierta manualmente.
+Self-contained Electron application that runs from source as a desktop window rather than as a PWA or manually opened web page.
 
-## Arquitectura local
+## Local architecture
 
-La aplicación no consume servicios remotos de Synapse. Sus conexiones posibles son:
+The application does not consume Synapse remote services. Its possible connections are:
 
-- Binance Global: API oficial `https://fapi.binance.com`
-- Binance US: API oficial `https://api.binance.us`
-- Coinbase: API oficial `https://api.coinbase.com`
-- Hermes Agent: CLI local instalado en este equipo para el chat de Arrow Agent
+- Binance Global: official API `https://fapi.binance.com`
+- Binance US: official API `https://api.binance.us`
+- Coinbase: official API `https://api.coinbase.com`
+- Hermes Agent: local CLI installed on this computer for the Arrow Agent chat
 
-El monitor local solo lee la cuenta y las posiciones. No crea órdenes ni necesita permisos de trading.
+The local monitor only reads account and position data. It does not create orders and does not require trading permissions.
 
-## Archivos autocontenidos
+## Self-contained files
 
-La aplicación no depende de carpetas superiores del repositorio. Todos los recursos visuales utilizados están incluidos en:
+The application does not depend on parent repository folders. All visual resources used by the app are included in:
 
 - `assets/css/style.css`
 - `assets/images/Logo Synapse Labs new.png`
 - `assets/images/Arrow Bot AI pro.png`
 - `assets/images/Favicon Synapse Labs.ico`
 
-`main.cjs` sirve `renderer/` y `assets/` desde la propia carpeta `trading-agent-desktop`. La carpeta completa puede trasladarse fuera del repositorio sin romper logos, estilos o imágenes.
+`main.cjs` serves `renderer/` and `assets/` from the `trading-agent-desktop` folder. The complete folder can be moved outside the repository without breaking logos, styles, or images.
 
-## Ejecutar en Windows
+## Run on Windows
 
-### Opción sencilla
+### Simple option
 
-Abre esta carpeta en el Explorador y haz doble clic en:
+Open this folder in File Explorer and double-click:
 
 `START_APP.cmd`
 
-El launcher comprueba Node/npm, instala Electron automáticamente si falta, abre la ventana y cierra la consola de inicio.
+The launcher checks Node/npm, installs Electron automatically if needed, opens the window, and closes the startup console.
 
-### Desde una terminal
+### From a terminal
 
 ```bash
-cd "C:\dev\Synapse Labs VPS 2.0\Synapse Labs\apps\trading-agent-desktop"
+cd trading-agent-desktop
 npm install
 npm start
 ```
 
-Requisitos: Node.js 20 o superior, Hermes Agent instalado y configurado, y la carpeta completa `trading-agent-desktop`.
+Requirements: Node.js 20 or later, Hermes Agent installed and configured, and the complete `trading-agent-desktop` folder.
 
 ## Arrow Agent skills
 
-The app bundles the Synapse Arrow desktop skills in `skills/arrow-desktop-app/`. Immediately after Hermes Agent is detected, Synapse copies the missing skills into `%HERMES_HOME%\skills\arrow-desktop-app` (by default `%LOCALAPPDATA%\hermes\skills\arrow-desktop-app`). Existing user skill files are never overwritten.
+The app bundles the Synapse Arrow desktop skills in `skills/arrow-desktop-app/`. Immediately after Hermes Agent is detected, Synapse copies missing skills into `%HERMES_HOME%\\skills\\arrow-desktop-app` (by default `%LOCALAPPDATA%\\hermes\\skills\\arrow-desktop-app`). Existing user skill files are never overwritten.
 
 If the copy cannot complete, Agent Setup shows the skills step and lets you retry before continuing to Arrow Agent.
 
-## Configurar Hermes Agent
+## Configure Hermes Agent
 
-`Agent Setup` comprueba que `hermes.exe` esté instalado y accesible. Si falta:
+`Agent Setup` checks whether `hermes.exe` is installed and available. If it is missing:
 
-1. Pulsa `Open Hermes installation guide`.
-2. Instala Hermes Agent desde la documentación oficial.
-3. Configura el proveedor/modelo mediante el flujo oficial de Hermes.
-4. Regresa a Synapse y pulsa `Check again`.
-5. Cuando los tres pasos indiquen `READY`, continúa con Arrow Agent.
+1. Click **Open Hermes installation guide**.
+2. Install Hermes Agent using the official documentation.
+3. Configure the provider/model through the official Hermes flow.
+4. Return to Synapse and click **Check again**.
+5. When all steps show `READY`, continue to Arrow Agent.
 
-Synapse no copia, solicita ni almacena claves de Hermes. Para cada pregunta, el proceso principal ejecuta un one-shot local de Hermes con `--toolsets clarify`, `--ignore-rules` y una política explícita de salida JSON. Eso deja fuera del puente del chat las herramientas de terminal, archivos, navegador, código, delegación y automatización.
+Synapse never copies, requests, or stores Hermes keys. For each question, the main process runs a local one-shot Hermes call with `--toolsets clarify`, `--ignore-rules`, and an explicit JSON-output policy. Terminal, file, browser, code, delegation, cron, and desktop-control toolsets are excluded from the chat bridge.
 
-El agente recibe un snapshot saneado del estado actual justo antes de cada mensaje. Solo puede proponer seleccionar un exchange o iniciar/detener el monitor; Synapse valida esas acciones y exige confirmación explícita del usuario antes de aplicar el mismo control disponible en la UI.
+The agent receives a sanitized snapshot of the current state immediately before each message. It can only propose selecting an exchange or starting/stopping the monitor; Synapse validates those actions and requires explicit user confirmation before applying the same controls available in the UI.
 
-Consulta `docs/HERMES_AGENT_INTEGRATION.md` para detalles y solución de problemas.
+See `docs/HERMES_AGENT_INTEGRATION.md` for details and troubleshooting.
 
-## Credenciales de exchanges
+## Exchange credentials
 
-1. Selecciona el exchange.
-2. Abre `API credentials`.
-3. Usa una API key de solo lectura.
-4. Guarda las credenciales.
+1. Select an exchange.
+2. Open **API credentials**.
+3. Use a read-only API key.
+4. Save the credentials.
 
-Binance Global y Binance US usan API key + API secret. Coinbase usa el nombre completo de la CDP API key y su EC private key en formato PEM.
+Binance Global and Binance US use an API key and API secret. Coinbase uses the full CDP API key name and its EC private key in PEM format.
 
-Electron cifra cada registro mediante `safeStorage` de Windows. Las credenciales descifradas solo existen en el proceso principal durante una consulta y nunca llegan al mensaje enviado a Arrow Agent o Hermes.
+Electron encrypts every record with Windows `safeStorage`. Decrypted credentials exist only in the main process during a request and never reach the message sent to Arrow Agent or Hermes.
 
-## Seguridad
+## Security
 
 - `contextIsolation: true`
 - `nodeIntegration: false`
 - `sandbox: true`
-- IPC limitado a credenciales, cuenta, monitor, comprobación de Hermes, guía oficial y chat validado
-- Guía externa limitada al dominio oficial de Hermes Agent
-- El chat solo habilita el toolset `clarify`; no entrega herramientas operativas al modelo
-- Credenciales de exchange excluidas del renderer, logs y contexto del agente
-- Respuestas limitadas a texto y acciones estructuradas allowlisted
-- Acciones propuestas siempre requieren confirmación en la UI
-- Sin permisos ni código para ejecutar órdenes
+- IPC limited to credentials, account, monitor, Hermes checks, the official guide, and validated chat
+- External guide limited to the official Hermes Agent domain
+- Chat exposes only the harmless `clarify` toolset; it does not give the model operational tools
+- Exchange credentials are excluded from the renderer, logs, and agent context
+- Responses are limited to text and allowlisted structured actions
+- Proposed actions always require confirmation in the UI
+- No permissions or code for executing orders
 
-## Verificación
+## Verification
 
 ```bash
 npm run check
@@ -102,8 +102,8 @@ npm run smoke
 npm run assistant-greeting-smoke
 ```
 
-No existe configuración de electron-builder, instalador propio, release binario ni carpeta `dist`.
+This project uses Electron from source. It has no electron-builder configuration, custom installer, binary release, or `dist` folder.
 
-## Licencia
+## License
 
-Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo `LICENSE` para el texto completo.
+This project is distributed under the MIT License. See `LICENSE` for the full text.
