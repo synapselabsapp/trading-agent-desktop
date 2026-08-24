@@ -7,6 +7,7 @@ const { promisify } = require('node:util');
 const { URL } = require('node:url');
 const { closeExchangePosition, fetchExchangeAccount, validateCredentials } = require('./local-exchanges.cjs');
 const { buildHermesSetupUrl, classifyHermesStatus } = require('./hermes-agent.cjs');
+const { installArrowSkills } = require('./hermes-skills.cjs');
 const {
   buildAssistantPrompt,
   buildHermesArgs,
@@ -27,6 +28,10 @@ const monitorState = new Map();
 const SMOKE_MODE = process.argv.includes('--smoke-test');
 const ASSISTANT_SMOKE = process.argv.includes('--assistant-smoke');
 const ASSISTANT_GREETING_SMOKE = process.argv.includes('--assistant-greeting-smoke');
+
+function arrowSkillsSourcePath() {
+  return path.join(APP_ROOT, 'skills', 'arrow-desktop-app');
+}
 let staticServer = null;
 let windowRef = null;
 let ipcRegistered = false;
@@ -137,6 +142,14 @@ async function findHermesCommand() {
 async function inspectHermes() {
   const runtime = await findHermesCommand();
   const installed = Boolean(runtime);
+  let skills = { status: installed ? 'error' : 'waiting', installed: 0, existing: 0, total: 0, path: null };
+  if (runtime) {
+    try {
+      skills = installArrowSkills({ sourceRoot: arrowSkillsSourcePath(), dryRun: SMOKE_MODE });
+    } catch (error) {
+      skills = { ...skills, status: 'error', message: String(error?.message || 'Synapse skills could not be installed.') };
+    }
+  }
   return {
     status: classifyHermesStatus({ installed, healthy: installed }),
     installed,
@@ -144,12 +157,14 @@ async function inspectHermes() {
     version: runtime?.version || null,
     architecture: process.arch,
     setupSupported: true,
+    skills,
   };
 }
 
 async function openHermesSetup(input) {
   const action = String(input?.action || '');
   if (action === 'continue') return { opened: false, targetKind: 'in-app' };
+  if (action === 'skills') return installArrowSkills({ sourceRoot: arrowSkillsSourcePath(), dryRun: SMOKE_MODE });
   const target = buildHermesSetupUrl(action);
   if (SMOKE_MODE) return { opened: true, targetKind: 'official-hermes-docs', dryRun: true };
   await shell.openExternal(target);

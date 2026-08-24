@@ -1,5 +1,11 @@
 # Integración de Hermes Agent
 
+## Skills de Arrow
+
+Cuando la app detecta `hermes.exe`, copia automáticamente las skills públicas incluidas en `skills/arrow-desktop-app/` hacia `%HERMES_HOME%\skills\arrow-desktop-app`. La instalación copia únicamente archivos faltantes y conserva cualquier personalización existente del usuario.
+
+Si la copia falla, el flujo Agent Setup muestra una acción para reintentarla antes de habilitar Arrow Agent.
+
 ## Flujo
 
 1. Synapse detecta `hermes.exe` con `where.exe` y rutas conocidas del instalador de Hermes.

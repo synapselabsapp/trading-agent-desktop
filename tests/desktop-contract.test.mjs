@@ -10,7 +10,7 @@ const text = (relative) => readFile(join(appRoot, relative), 'utf8');
 async function walk(dir) {
   const files = [];
   for (const entry of await readdir(dir, { withFileTypes: true })) {
-    if (['node_modules', '.git'].includes(entry.name)) continue;
+    if (['node_modules', '.git', 'skills'].includes(entry.name)) continue;
     const path = join(dir, entry.name);
     if (entry.isDirectory()) files.push(...await walk(path)); else files.push(path);
   }
@@ -51,6 +51,7 @@ test('the renderer offers one guided Hermes Agent onboarding path', async () => 
   assert.match(html, /id="parameters-fields"/);
   assert.match(html, /id="hermes-install-status"/);
   assert.match(html, /id="hermes-runtime-status"/);
+  assert.match(html, /id="hermes-skills-status"/);
   assert.match(html, /id="hermes-primary-action"/);
   assert.match(html, /id="check-hermes"/);
   assert.match(html, /Hermes Agent/);
@@ -84,6 +85,7 @@ test('exchange credentials and Hermes integration stay behind secure IPC', async
   assert.match(main, /ipcMain\.handle\(['"]monitor:start['"]/);
   assert.match(main, /ipcMain\.handle\(['"]monitor:stop['"]/);
   assert.match(main, /ipcMain\.handle\(['"]hermes:status['"]/);
+  assert.match(main, /installArrowSkills/);
   assert.match(main, /ipcMain\.handle\(['"]hermes:setup['"]/);
   assert.match(main, /ipcMain\.handle\(['"]bot:config['"]/);
   assert.match(main, /ipcMain\.handle\(['"]agent:preferences['"]/);

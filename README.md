@@ -48,6 +48,12 @@ npm start
 
 Requisitos: Node.js 20 o superior, Hermes Agent instalado y configurado, y la carpeta completa `trading-agent-desktop`.
 
+## Arrow Agent skills
+
+The app bundles the Synapse Arrow desktop skills in `skills/arrow-desktop-app/`. Immediately after Hermes Agent is detected, Synapse copies the missing skills into `%HERMES_HOME%\skills\arrow-desktop-app` (by default `%LOCALAPPDATA%\hermes\skills\arrow-desktop-app`). Existing user skill files are never overwritten.
+
+If the copy cannot complete, Agent Setup shows the skills step and lets you retry before continuing to Arrow Agent.
+
 ## Configurar Hermes Agent
 
 `Agent Setup` comprueba que `hermes.exe` esté instalado y accesible. Si falta:

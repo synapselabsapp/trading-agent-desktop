@@ -55,7 +55,7 @@ const elements = {
   help: $('#help-dialog'), helpOpen: $('#open-help'), helpMinimize: $('#help-minimize'), helpMaximize: $('#help-maximize'),
   agentToggle: $('#agent-toggle'), agentToggleState: $('#agent-toggle-state'),
   agentPreferencesInput: $('#agent-preferences'), agentPreferencesSave: $('#save-agent-preferences'), agentPreferencesStatus: $('#agent-preferences-status'),  parametersCard: $('#parameters-card'), parametersGrid: $('#parameters-grid'), parametersOpen: $('#open-parameters'), parametersDialog: $('#parameters-dialog'), parametersForm: $('#parameters-form'), parametersFields: $('#parameters-fields'), parametersStatus: $('#parameters-status'),
-  hermesInstallStatus: $('#hermes-install-status'), hermesRuntimeStatus: $('#hermes-runtime-status'), hermesConnectionStatus: $('#hermes-connection-status'),
+  hermesInstallStatus: $('#hermes-install-status'), hermesRuntimeStatus: $('#hermes-runtime-status'), hermesSkillsStatus: $('#hermes-skills-status'), hermesConnectionStatus: $('#hermes-connection-status'),
   hermesSummary: $('#hermes-setup-summary p'), hermesPrimary: $('#hermes-primary-action'), hermesCheck: $('#check-hermes'),
   agentStatus: $('#agent-status'), agentChat: $('#agent-chat'), agentForm: $('#agent-form'), agentInput: $('#agent-input'), agentContext: $('#agent-context-label'), sendAgent: $('#send-agent'),
   apiDialog: $('#api-dialog'), apiForm: $('#api-form'), apiStatus: $('#api-key-status'), apiKey: $('#exchange-api-key'), apiSecret: $('#exchange-api-secret'),
@@ -90,23 +90,32 @@ function setHermesStep(element, text, kind = '') {
 }
 
 function renderHermesStatus(payload = {}) {
-  state.hermesStatus = payload.status || 'not-installed';
-  const installed = state.hermesStatus !== 'not-installed';
+  const runtimeStatus = payload.status || 'not-installed';
+  const runtimeInstalled = runtimeStatus !== 'not-installed';
+  const runtimeReady = runtimeStatus === 'ready';
+  const skills = payload.skills || {};
+  const skillsReady = ['installed', 'present', 'dry-run'].includes(skills.status);
+  state.hermesStatus = runtimeReady && !skillsReady ? 'setup-required' : runtimeStatus;
   const ready = state.hermesStatus === 'ready';
-  setHermesStep(elements.hermesInstallStatus, installed ? 'READY' : 'ACTION NEEDED', installed ? 'ready' : 'action');
-  setHermesStep(elements.hermesRuntimeStatus, ready ? 'READY' : installed ? 'ACTION NEEDED' : 'WAITING', ready ? 'ready' : installed ? 'action' : '');
+  setHermesStep(elements.hermesInstallStatus, runtimeInstalled ? 'READY' : 'ACTION NEEDED', runtimeInstalled ? 'ready' : 'action');
+  setHermesStep(elements.hermesRuntimeStatus, runtimeReady ? 'READY' : runtimeInstalled ? 'ACTION NEEDED' : 'WAITING', runtimeReady ? 'ready' : runtimeInstalled ? 'action' : '');
+  setHermesStep(elements.hermesSkillsStatus, skillsReady ? 'READY' : runtimeInstalled ? 'ACTION NEEDED' : 'WAITING', skillsReady ? 'ready' : runtimeInstalled ? 'action' : '');
   setHermesStep(elements.hermesConnectionStatus, ready ? 'READY' : 'WAITING', ready ? 'ready' : '');
   elements.hermesPrimary.disabled = false;
-  if (!installed) {
+  if (!runtimeInstalled) {
     elements.hermesSummary.textContent = 'Install Hermes Agent with the official installer, then return here and press Check again.';
     elements.hermesPrimary.textContent = 'Open Hermes installation guide';
     elements.hermesPrimary.dataset.action = 'download';
-  } else if (!ready) {
+  } else if (!skillsReady) {
+    elements.hermesSummary.textContent = skills.message || 'Hermes Agent is installed. Synapse skills need to be installed before Arrow Agent can continue.';
+    elements.hermesPrimary.textContent = 'Install Synapse skills';
+    elements.hermesPrimary.dataset.action = 'skills';
+  } else if (!runtimeReady) {
     elements.hermesSummary.textContent = 'Hermes Agent was found but is not ready. Finish its setup, then press Check again.';
     elements.hermesPrimary.textContent = 'Open Hermes setup guide';
     elements.hermesPrimary.dataset.action = 'setup';
   } else {
-    elements.hermesSummary.textContent = `Hermes Agent is ready${payload.version ? ` · ${payload.version}` : ''}. Continue in Synapse.`;
+    elements.hermesSummary.textContent = `Hermes Agent is ready${payload.version ? ` · ${payload.version}` : ''}. Synapse skills are installed. Continue in Synapse.`;
     elements.hermesPrimary.textContent = 'Continue in Synapse';
     elements.hermesPrimary.dataset.action = 'continue';
   }
