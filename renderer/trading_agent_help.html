@@ -73,106 +73,106 @@
   <div>
     <span class="eyebrow">SYNAPSE LABS · TRADING AGENT GUIDE</span>
     <h1>How every function works</h1>
-    <p>Una guía completa de las funciones visibles de Trading Agent, basada en la interfaz real de la aplicación.</p>
+    <p>A complete guide to the visible Trading Agent functions, based on the application's real interface.</p>
   </div>
 </div>
 <p class="help-lead">This guide follows the exact controls visible in your Synapse Trading Agent window. Each section explains what the control does, when to use it, what it reads or changes, and what it does not do.</p>
 
       <div class="help-sections">
         <section class="help-section help-section-wide">
-          <figure class="help-figure"><img src="/../assets/images/help/toolbar.png" alt="Recorte real de la barra superior con Local Only, refresh, API Setup y Agent Setup"><figcaption>Recorte real · barra superior</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">01 · CONTROL CENTER</span><h3>Barra superior: estado, refresh y configuración</h3>
-            <p><strong>LOCAL ONLY</strong> confirma que esta aplicación trabaja desde este equipo y no usa un servidor Synapse intermedio para leer tu exchange.</p>
+          <figure class="help-figure"><img src="/../assets/images/help/toolbar.png" alt="Real crop of the top bar with Local Only, refresh, API Setup, and Agent Setup"><figcaption>Real crop · top bar</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">01 · CONTROL CENTER</span><h3>Top bar: status, refresh, and configuration</h3>
+            <p><strong>LOCAL ONLY</strong> confirms that this application runs from this computer and does not use an intermediate Synapse server to read your exchange.</p>
             <dl class="help-details">
-              <div><dt>↻ Refresh live data</dt><dd>Vuelve a consultar balance, capital, valor total, posiciones y órdenes del exchange seleccionado. Solo puede traer datos si ya guardaste credenciales.</dd></div>
-              <div><dt>API Setup</dt><dd>Abre la pantalla para guardar, actualizar o eliminar las credenciales locales cifradas del exchange activo. El formulario nunca muestra el secreto real una vez guardado.</dd></div>
-              <div><dt>Agent Setup</dt><dd>Abre la comprobación del runtime local de Hermes Agent y las preferencias de Arrow. Desde allí puedes verificar la instalación y personalizar tono o enfoque sin cambiar la política base.</dd></div>
+              <div><dt>↻ Refresh live data</dt><dd>Queries the selected exchange again for balance, capital, total value, positions, and orders. It can return data only if credentials have already been saved.</dd></div>
+              <div><dt>API Setup</dt><dd>Opens the screen for saving, updating, or deleting the active exchange's encrypted local credentials. The form never shows the actual secret after it has been saved.</dd></div>
+              <div><dt>Agent Setup</dt><dd>Opens the local Hermes Agent runtime check and Arrow preferences. From there, you can verify the installation and customize the tone or focus without changing the base policy.</dd></div>
             </dl>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/exchange.png" alt="Recorte real del selector Active Exchange en Coinbase"><figcaption>Recorte real · exchange activo</figcaption></figure>
+          <figure class="help-figure"><img src="/../assets/images/help/exchange.png" alt="Real crop of the Active Exchange selector on Coinbase"><figcaption>Real crop · active exchange</figcaption></figure>
           <div class="help-copy"><span class="eyebrow">02 · CONNECTION SCOPE</span><h3>Active Exchange</h3>
-            <p>Selecciona la cuenta que Synapse debe consultar: Binance Global, Binance US o Coinbase. El cambio de exchange vuelve a cargar sus parámetros, estado de credenciales, monitor y datos de cuenta de forma independiente.</p>
-            <ul class="help-bullets"><li>La selección no ejecuta órdenes.</li><li>Las credenciales se guardan separadas por exchange.</li><li>El icono identifica visualmente el exchange activo.</li></ul>
+            <p>Selects the account Synapse should query: Binance Global, Binance US, or Coinbase. Changing the exchange reloads its parameters, credential status, monitor, and account data independently.</p>
+            <ul class="help-bullets"><li>Selection does not execute orders.</li><li>Credentials are stored separately for each exchange.</li><li>The icon identifies the active exchange visually.</li></ul>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/ai-mode.png" alt="Recorte real de la tarjeta AI Assistance con el interruptor de Arrow"><figcaption>Recorte real · AI Assistance</figcaption></figure>
+          <figure class="help-figure"><img src="/../assets/images/help/ai-mode.png" alt="Real crop of the AI Assistance card with the Arrow toggle"><figcaption>Real crop · AI Assistance</figcaption></figure>
           <div class="help-copy"><span class="eyebrow">03 · ASSISTANCE MODE</span><h3>AI Agent (Arrow)</h3>
-            <p>El interruptor activa o desactiva la asistencia de Arrow dentro del chat lateral. Cuando está activo, Arrow puede analizar el estado no secreto mostrado por Synapse y proponer controles que ya existen en la interfaz.</p>
-            <ul class="help-bullets"><li>Arrow no abre posiciones ni crea operaciones nuevas.</li><li>Puede sugerir cambios de parámetros o del monitor mediante controles validados.</li><li>Si Hermes no está listo, el chat permanece bloqueado y te lleva a Agent Setup.</li></ul>
+            <p>The toggle enables or disables Arrow assistance in the side chat. When enabled, Arrow can analyze the non-secret state shown by Synapse and suggest controls that already exist in the interface.</p>
+            <ul class="help-bullets"><li>Arrow does not open positions or create new trades.</li><li>It can suggest parameter or monitor changes through validated controls.</li><li>If Hermes is not ready, the chat remains locked and takes you to Agent Setup.</li></ul>
           </div>
         </section>
 
         <section class="help-section help-section-wide">
-          <figure class="help-figure"><img src="/../assets/images/help/monitor.png" alt="Recorte real del monitor local con estado Ready y botones Start y Stop"><figcaption>Recorte real · monitor de posiciones</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">04 · LOCAL POSITION MONITOR</span><h3>Start y Stop</h3>
-            <p>El monitor consulta periódicamente el exchange desde este computador para mantener actualizado el tablero. No es un motor de trading: no abre entradas ni lanza estrategias automáticamente.</p>
+          <figure class="help-figure"><img src="/../assets/images/help/monitor.png" alt="Real crop of the local monitor showing the Ready state and Start and Stop buttons"><figcaption>Real crop · position monitor</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">04 · LOCAL POSITION MONITOR</span><h3>Start and Stop</h3>
+            <p>The monitor periodically queries the exchange from this computer to keep the dashboard up to date. It is not a trading engine: it does not open entries or launch strategies automatically.</p>
             <dl class="help-details">
-              <div><dt>Start</dt><dd>Inicia la lectura local del exchange activo. Después actualiza la cuenta y marca el estado como RUNNING.</dd></div>
-              <div><dt>Stop</dt><dd>Detiene las consultas periódicas del monitor. No borra credenciales, parámetros ni datos ya mostrados.</dd></div>
-              <div><dt>READY / OFFLINE</dt><dd>READY significa que hay credenciales disponibles y el monitor está detenido; OFFLINE indica que falta configuración local.</dd></div>
+              <div><dt>Start</dt><dd>Starts local reads from the active exchange. It then updates the account and marks the status as RUNNING.</dd></div>
+              <div><dt>Stop</dt><dd>Stops the monitor's periodic queries. It does not delete credentials, parameters, or data already displayed.</dd></div>
+              <div><dt>READY / OFFLINE</dt><dd>READY means credentials are available and the monitor is stopped; OFFLINE indicates that local configuration is missing.</dd></div>
             </dl>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/parameters.png" alt="Recorte real del panel Parameters con los valores visibles y el botón Configure"><figcaption>Recorte real · Parameters</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">05 · BOT CONFIGURATION</span><h3>Parameters y Configure</h3>
-            <p>El panel lateral es un resumen vivo de los 12 valores guardados para el exchange activo. <strong>Configure</strong> abre el formulario editable; al guardar, los valores se almacenan localmente para ese exchange.</p>
-            <ul class="help-bullets help-parameter-list"><li>Position update interval (ms): frecuencia de actualización.</li><li>Take profit percentage of capital: umbral de take profit del capital.</li><li>DCA relative percentage: proporción base de DCA.</li><li>DCA distance multipliers: distancias de cada nivel, por ejemplo [1, 2].</li><li>Stop-loss distance multiplier: multiplicador de distancia del stop-loss.</li><li>DCA quantity increment (%): incremento de cantidad por nivel.</li><li>Minimum DCA distance (%): distancia mínima antes de otro DCA.</li><li>Maximum open positions: límite de posiciones abiertas.</li><li>Stop-loss percentage: porcentaje de stop-loss.</li><li>DCA percentage increment: aumento porcentual entre niveles.</li><li>Breakeven ROI threshold: ROI a partir del cual se considera breakeven.</li><li>Auto-shutdown (minutes): minutos hasta detener el monitor automáticamente.</li></ul>
-            <p class="help-note">Estos valores se muestran y persisten localmente. Por sí solos no convierten al monitor en un ejecutor de órdenes.</p>
+          <figure class="help-figure"><img src="/../assets/images/help/parameters.png" alt="Real crop of the Parameters panel with visible values and the Configure button"><figcaption>Real crop · Parameters</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">05 · BOT CONFIGURATION</span><h3>Parameters and Configure</h3>
+            <p>The side panel is a live summary of the 12 values saved for the active exchange. <strong>Configure</strong> opens the editable form; when saved, the values are stored locally for that exchange.</p>
+            <ul class="help-bullets help-parameter-list"><li>Position update interval (ms): refresh frequency.</li><li>Take profit percentage of capital: take-profit threshold for capital.</li><li>DCA relative percentage: base DCA proportion.</li><li>DCA distance multipliers: distance for each level, for example [1, 2].</li><li>Stop-loss distance multiplier: stop-loss distance multiplier.</li><li>DCA quantity increment (%): quantity increase per level.</li><li>Minimum DCA distance (%): minimum distance before another DCA.</li><li>Maximum open positions: open-position limit.</li><li>Stop-loss percentage: stop-loss percentage.</li><li>DCA percentage increment: percentage increase between levels.</li><li>Breakeven ROI threshold: ROI at which breakeven is considered reached.</li><li>Auto-shutdown (minutes): minutes before automatically stopping the monitor.</li></ul>
+            <p class="help-note">These values are displayed and persisted locally. By themselves, they do not turn the monitor into an order executor.</p>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/metrics.png" alt="Recorte real de las tarjetas Account Balance, Available Capital, Total Value y Open Positions"><figcaption>Recorte real · métricas</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">06 · ACCOUNT SNAPSHOT</span><h3>Account Balance, Available Capital, Total Value y Open Positions</h3>
-            <p>Estas tarjetas son una lectura resumida del último snapshot recibido del exchange.</p>
-            <dl class="help-details"><div><dt>Account Balance</dt><dd>Balance de la cuenta según el exchange y el mercado mostrado.</dd></div><div><dt>Available Capital</dt><dd>Capital disponible para operar o margen libre, según la integración activa.</dd></div><div><dt>Total Value</dt><dd>Valor total calculado a partir de los datos normalizados disponibles.</dd></div><div><dt>Open Positions</dt><dd>Número de posiciones abiertas; debajo se indica el mercado, como SPOT o PERPETUALS.</dd></div></dl>
+          <figure class="help-figure"><img src="/../assets/images/help/metrics.png" alt="Real crop of the Account Balance, Available Capital, Total Value, and Open Positions cards"><figcaption>Real crop · metrics</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">06 · ACCOUNT SNAPSHOT</span><h3>Account Balance, Available Capital, Total Value, and Open Positions</h3>
+            <p>These cards summarize the latest snapshot received from the exchange.</p>
+            <dl class="help-details"><div><dt>Account Balance</dt><dd>Account balance according to the exchange and displayed market.</dd></div><div><dt>Available Capital</dt><dd>Capital available for trading or free margin, depending on the active integration.</dd></div><div><dt>Total Value</dt><dd>Total value calculated from the available normalized data.</dd></div><div><dt>Open Positions</dt><dd>Number of open positions; the market, such as SPOT or PERPETUALS, is shown below.</dd></div></dl>
           </div>
         </section>
 
         <section class="help-section help-section-wide">
-          <figure class="help-figure"><img src="/../assets/images/help/exchange-data.png" alt="Recorte real de Direct Exchange Data con las pestañas Open positions y Pending Orders"><figcaption>Recorte real · datos directos del exchange</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">07 · DIRECT EXCHANGE DATA</span><h3>Open positions, Pending Orders y Close position</h3>
-            <p>Esta zona muestra la respuesta directa normalizada del exchange seleccionado, no datos inventados por Arrow.</p>
-            <ul class="help-bullets"><li><strong>Open positions:</strong> lista símbolo, lado, tamaño, entrada, precio mark, PnL no realizado y riesgo.</li><li><strong>Pending Orders:</strong> cambia a las órdenes pendientes y muestra símbolo, lado, tipo, precio, cantidad, estado y Reduce Only.</li><li><strong>Select:</strong> marca una posición concreta para una acción posterior.</li><li><strong>Close position:</strong> permanece deshabilitado hasta seleccionar una posición; después exige confirmación y valida de nuevo que la posición siga abierta y conserve la misma cantidad.</li></ul>
+          <figure class="help-figure"><img src="/../assets/images/help/exchange-data.png" alt="Real crop of Direct Exchange Data with the Open positions and Pending Orders tabs"><figcaption>Real crop · direct exchange data</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">07 · DIRECT EXCHANGE DATA</span><h3>Open positions, Pending Orders, and Close position</h3>
+            <p>This area shows the normalized direct response from the selected exchange, not data invented by Arrow.</p>
+            <ul class="help-bullets"><li><strong>Open positions:</strong> lists symbol, side, size, entry, mark price, unrealized PnL, and risk.</li><li><strong>Pending Orders:</strong> switches to pending orders and shows symbol, side, type, price, quantity, status, and Reduce Only.</li><li><strong>Select:</strong> marks a specific position for a later action.</li><li><strong>Close position:</strong> remains disabled until a position is selected; it then requires confirmation and revalidates that the position is still open with the same quantity.</li></ul>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/activity.png" alt="Recorte real de Local Event Stream y la lista Activity"><figcaption>Recorte real · Activity</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">08 · LOCAL EVENT STREAM</span><h3>Activity y Clear</h3>
-            <p>Activity registra eventos importantes del uso local: inicio o detención del monitor, cambios guardados, respuestas de Arrow, errores y acciones realizadas.</p>
-            <ul class="help-bullets"><li>El punto verde identifica eventos correctos.</li><li>El punto rosa marca avisos o detenciones.</li><li>El punto rojo indica errores.</li><li><strong>Clear</strong> limpia la lista visible; no borra credenciales, parámetros ni el estado del exchange.</li></ul>
+          <figure class="help-figure"><img src="/../assets/images/help/activity.png" alt="Real crop of Local Event Stream and the Activity list"><figcaption>Real crop · Activity</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">08 · LOCAL EVENT STREAM</span><h3>Activity and Clear</h3>
+            <p>Activity records important local-use events: monitor starts and stops, saved changes, Arrow responses, errors, and completed actions.</p>
+            <ul class="help-bullets"><li>The green dot identifies successful events.</li><li>The pink dot marks warnings or stops.</li><li>The red dot indicates errors.</li><li><strong>Clear</strong> clears the visible list; it does not delete credentials, parameters, or exchange state.</li></ul>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/arrow-agent.png" alt="Recorte real del panel Arrow Agent con el estado LIVE y su explicación"><figcaption>Recorte real · Arrow Agent</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">09 · RISK ASSISTANCE</span><h3>Arrow Agent: análisis dentro de Synapse</h3>
-            <p>El panel derecho es el espacio de conversación de Arrow. Recibe el snapshot actual no secreto de posiciones, órdenes, métricas, exchange y parámetros para ayudarte a interpretar riesgo y estado.</p>
-            <ul class="help-bullets"><li>LIVE significa que Arrow está habilitado y Hermes está listo.</li><li>STANDBY significa que está apagado o falta completar Agent Setup.</li><li>Las acciones propuestas solo usan controles permitidos por Synapse y se aplican desde botones visibles.</li></ul>
+          <figure class="help-figure"><img src="/../assets/images/help/arrow-agent.png" alt="Real crop of the Arrow Agent panel showing the LIVE state and its explanation"><figcaption>Real crop · Arrow Agent</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">09 · RISK ASSISTANCE</span><h3>Arrow Agent: analysis inside Synapse</h3>
+            <p>The right panel is Arrow's conversation space. It receives the current non-secret snapshot of positions, orders, metrics, exchange, and parameters to help you interpret risk and status.</p>
+            <ul class="help-bullets"><li>LIVE means Arrow is enabled and Hermes is ready.</li><li>STANDBY means it is disabled or Agent Setup is incomplete.</li><li>Proposed actions use only controls allowed by Synapse and are applied through visible buttons.</li></ul>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/arrow-chat.png" alt="Recorte real del cuadro de chat de Arrow Agent y el botón Send"><figcaption>Recorte real · chat de Arrow</figcaption></figure>
-          <div class="help-copy"><span class="eyebrow">10 · CONVERSATION</span><h3>Pregunta a Arrow y Send</h3>
-            <p>Escribe una pregunta sobre el estado actual y pulsa <strong>Send</strong>. También puedes pulsar Enter para enviar; Shift+Enter conserva un salto de línea.</p>
-            <ul class="help-bullets"><li>El contador indica cuántas posiciones se incluyen en el contexto.</li><li>El historial reciente se conserva dentro de la conversación para preguntas de seguimiento.</li><li>Arrow no recibe claves API, secretos, tokens ni la clave privada de Coinbase.</li><li>Si solicita una acción, Synapse la valida y muestra el resultado en Activity.</li></ul>
+          <figure class="help-figure"><img src="/../assets/images/help/arrow-chat.png" alt="Real crop of the Arrow Agent chat box and Send button"><figcaption>Real crop · Arrow chat</figcaption></figure>
+          <div class="help-copy"><span class="eyebrow">10 · CONVERSATION</span><h3>Ask Arrow and Send</h3>
+            <p>Write a question about the current state and press <strong>Send</strong>. You can also press Enter to send; Shift+Enter preserves a line break.</p>
+            <ul class="help-bullets"><li>The counter indicates how many positions are included in the context.</li><li>Recent history is retained in the conversation for follow-up questions.</li><li>Arrow does not receive API keys, secrets, tokens, or the Coinbase private key.</li><li>If it requests an action, Synapse validates it and shows the result in Activity.</li></ul>
           </div>
         </section>
 
         <section class="help-section">
-          <figure class="help-figure"><img src="/../assets/images/help/runtime.png" alt="Recorte real del indicador Local runtime y el texto Local encrypted Desktop source"><figcaption>Recorte real · runtime local</figcaption></figure>
+          <figure class="help-figure"><img src="/../assets/images/help/runtime.png" alt="Real crop of the Local runtime indicator and the Local encrypted Desktop source text"><figcaption>Real crop · local runtime</figcaption></figure>
           <div class="help-copy"><span class="eyebrow">11 · LOCAL SAFETY STATE</span><h3>Local runtime</h3>
-            <p>La línea inferior del rail resume el entorno activo: exchange seleccionado, estado local y origen de escritorio.</p>
-            <ul class="help-bullets"><li>El punto verde indica que la interfaz local está disponible.</li><li><strong>Local runtime · [exchange]</strong> confirma el exchange actualmente seleccionado.</li><li><strong>LOCAL ENCRYPTED · DESKTOP SOURCE</strong> recuerda que las credenciales se protegen con el almacenamiento seguro de Windows y que la app corre desde el escritorio.</li></ul>
+            <p>The bottom line of the rail summarizes the active environment: selected exchange, local state, and desktop source.</p>
+            <ul class="help-bullets"><li>The green dot indicates that the local interface is available.</li><li><strong>Local runtime · [exchange]</strong> confirms the currently selected exchange.</li><li><strong>LOCAL ENCRYPTED · DESKTOP SOURCE</strong> reminds you that credentials are protected with Windows secure storage and that the app runs from the desktop.</li></ul>
           </div>
         </section>
       </div>

@@ -1,60 +1,60 @@
-# Integración de Hermes Agent
+# Hermes Agent Integration
 
-## Skills de Arrow
+## Arrow Skills
 
-Cuando la app detecta `hermes.exe`, copia automáticamente las skills públicas incluidas en `skills/arrow-desktop-app/` hacia `%HERMES_HOME%\skills\arrow-desktop-app`. La instalación copia únicamente archivos faltantes y conserva cualquier personalización existente del usuario.
+When the app detects `hermes.exe`, it automatically copies the public skills included in `skills/arrow-desktop-app/` to `%HERMES_HOME%\skills\arrow-desktop-app`. The installation copies only missing files and preserves any existing user customizations.
 
-Si la copia falla, el flujo Agent Setup muestra una acción para reintentarla antes de habilitar Arrow Agent.
+If the copy fails, the Agent Setup flow shows an action to retry it before enabling Arrow Agent.
 
-## Flujo
+## Flow
 
-1. Synapse detecta `hermes.exe` con `where.exe` y rutas conocidas del instalador de Hermes.
-2. `Agent Setup` muestra la versión detectada sin leer claves ni tokens.
-3. Si Hermes falta, el botón abre únicamente la guía oficial de instalación:
+1. Synapse detects `hermes.exe` with `where.exe` and known Hermes installer paths.
+2. `Agent Setup` displays the detected version without reading keys or tokens.
+3. If Hermes is missing, the button opens only the official installation guide:
    `https://hermes-agent.nousresearch.com/docs/getting-started/installation/`
-4. El chat se queda dentro del panel `Arrow Agent`.
-5. El proceso principal ejecuta Hermes con `-z`, `--toolsets clarify`, `--ignore-rules` y `--reasoning low`.
-6. Hermes debe devolver un único objeto JSON `{ reply, actions }`. Synapse valida el JSON y elimina cualquier acción no permitida.
+4. The chat stays inside the `Arrow Agent` panel.
+5. The main process runs Hermes with `-z`, `--toolsets clarify`, `--ignore-rules`, and `--reasoning low`.
+6. Hermes must return a single JSON object `{ reply, actions }`. Synapse validates the JSON and removes any disallowed action.
 
-## Límite de herramientas
+## Tool Boundary
 
-El puente no expone una URL, token, sesión del gateway ni IPC genérico. El one-shot recibe únicamente el toolset `clarify`, necesario para que una ejecución sin TTY no se bloquee si el modelo intenta pedir una aclaración. No se entregan terminal, archivos, navegador, código, memoria, skills, delegación, cron ni control del escritorio.
+The bridge does not expose a URL, token, gateway session, or generic IPC. The one-shot receives only the `clarify` toolset, which is required to prevent a non-TTY execution from blocking if the model tries to ask for clarification. It does not receive terminal, file, browser, code, memory, skills, delegation, cron, or desktop-control access.
 
-La política del prompt obliga a analizar solo el snapshot no secreto enviado por Synapse. El modelo no puede afirmar que inspeccionó archivos, credenciales, órdenes, pantallas, dispositivos o sistemas externos.
+The prompt policy requires the model to analyze only the non-secret snapshot sent by Synapse. The model cannot claim to have inspected files, credentials, orders, screens, devices, or external systems.
 
-## Snapshot permitido
+## Allowed Snapshot
 
-Antes de cada mensaje, Synapse construye y vuelve a sanear:
+Before each message, Synapse builds and sanitizes again:
 
-- exchange seleccionado;
-- estado del monitor;
-- presencia de credenciales como booleano;
-- balance, capital disponible y valor total;
-- posiciones abiertas con símbolo, lado, tamaño, entrada, mark, PnL, leverage, liquidación y distancia de riesgo;
-- órdenes con símbolo, lado, tipo, estado, precio, cantidad y `reduceOnly`;
-- fecha de actualización.
+- selected exchange;
+- monitor status;
+- credential presence as a boolean;
+- balance, available capital, and total value;
+- open positions with symbol, side, size, entry, mark, PnL, leverage, liquidation, and risk distance;
+- orders with symbol, side, type, status, price, quantity, and `reduceOnly`;
+- update timestamp.
 
-No se aceptan ni se incluyen API keys, secretos, firmas, tokens, campos desconocidos o contenido cifrado.
+API keys, secrets, signatures, tokens, unknown fields, and encrypted content are neither accepted nor included.
 
-## Acciones
+## Actions
 
-El resultado del modelo puede proponer únicamente:
+The model result may propose only:
 
-- `set_exchange`: `binance`, `binance_us` o `coinbase`;
-- `set_monitor`: `start` o `stop`.
+- `set_exchange`: `binance`, `binance_us`, or `coinbase`;
+- `set_monitor`: `start` or `stop`.
 
-El proceso principal valida la respuesta. El renderer vuelve a validar la etiqueta y muestra un botón `Apply`; nada cambia hasta que el usuario confirma y el control correspondiente sigue disponible en Synapse.
+The main process validates the response. The renderer validates the label again and shows an `Apply` button; nothing changes until the user confirms and the corresponding control remains available in Synapse.
 
-## Solución de problemas
+## Troubleshooting
 
-- Si aparece `Hermes Agent is not installed`, instala Hermes y vuelve a abrir la aplicación o pulsa `Check again`.
-- Si Hermes está instalado pero Arrow Agent no responde, ejecuta `hermes --version` y después `hermes doctor` desde una terminal para revisar el proveedor/modelo configurado.
-- Si la respuesta no es JSON, Synapse la rechaza y no aplica acciones.
-- Un límite del proveedor se muestra como indisponibilidad temporal; no se muestran nombres de infraestructura ni secretos.
+- If `Hermes Agent is not installed` appears, install Hermes and reopen the application or press `Check again`.
+- If Hermes is installed but Arrow Agent does not respond, run `hermes --version` and then `hermes doctor` from a terminal to review the configured provider/model.
+- If the response is not JSON, Synapse rejects it and applies no actions.
+- A provider limit is shown as temporary unavailability; infrastructure names and secrets are not displayed.
 
-## Verificación manual
+## Manual Verification
 
-Desde la carpeta de la app:
+From the app directory:
 
 ```bash
 npm run check
@@ -62,7 +62,7 @@ npm run smoke
 npm run assistant-greeting-smoke
 ```
 
-Para probar la misma superficie de Hermes fuera de Electron sin herramientas operativas:
+To test the same Hermes surface outside Electron without operational tools:
 
 ```bash
 hermes -z "Return exactly: HERMES_PROBE" --toolsets clarify --ignore-rules --reasoning low

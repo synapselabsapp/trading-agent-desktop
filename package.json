@@ -1,7 +1,7 @@
 {
   "name": "synapse-trading-bot-desktop",
   "version": "1.4.0",
-  "description": "Aplicación local de Synapse Labs con exchanges directos y Arrow Agent integrado mediante Hermes Agent",
+  "description": "Local Synapse Labs application with direct exchange connections and Arrow Agent integrated through Hermes Agent",
   "main": "main.cjs",
   "type": "module",
   "author": "Synapse Labs",
