@@ -13,9 +13,41 @@
     "assistant-smoke": "electron . --smoke-test --assistant-smoke",
     "assistant-greeting-smoke": "electron . --smoke-test --assistant-greeting-smoke",
     "test": "node --test tests/desktop-contract.test.mjs tests/hermes-agent.test.cjs tests/assistant-chat.test.cjs tests/local-exchanges.test.cjs tests/formatters.test.mjs tests/bot-config.test.cjs",
-    "check": "node --check main.cjs && node --check preload.cjs && node --check hermes-agent.cjs && node --check assistant-chat.cjs && node --check bot-config.cjs && node --check local-exchanges.cjs && node --check renderer/app.mjs && node --check renderer/formatters.mjs && npm test"
+    "check": "node --check main.cjs && node --check preload.cjs && node --check hermes-agent.cjs && node --check assistant-chat.cjs && node --check bot-config.cjs && node --check local-exchanges.cjs && node --check renderer/app.mjs && node --check renderer/formatters.mjs && npm test",
+    "package:win": "electron-builder --win portable"
   },
   "devDependencies": {
-    "electron": "^37.2.6"
+    "electron": "^37.2.6",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.synapselabs.synapse.tradingagentdesktop",
+    "productName": "Synapse Trading Agent Desktop",
+    "directories": {
+      "output": "dist"
+    },
+    "asar": true,
+    "files": [
+      "**/*",
+      "!tests{,/**}",
+      "!docs{,/**}",
+      "!backup{,/**}",
+      "!coverage{,/**}",
+      "!dist{,/**}"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "Synapse-Trading-Agent-Desktop-${version}-portable.exe"
+    }
   }
 }

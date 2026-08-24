@@ -28,6 +28,12 @@ La aplicación no depende de carpetas superiores del repositorio. Todos los recu
 
 `main.cjs` sirve `renderer/` y `assets/` desde la propia carpeta `trading-agent-desktop`. La carpeta completa puede trasladarse fuera del repositorio sin romper logos, estilos o imágenes.
 
+## Ejecutable Windows recomendado
+
+Para usuarios principiantes, descarga `Synapse-Trading-Agent-Desktop-1.4.0-portable.exe` desde la sección [Releases](https://github.com/synapselabsapp/trading-agent-desktop/releases) y haz doble clic en el archivo. No necesitas instalar Node.js, npm ni Electron.
+
+La versión portable mantiene la aplicación completa en un solo ejecutable. Hermes Agent sigue siendo opcional para utilizar Arrow Agent; la aplicación puede abrirse y configurarse sin él.
+
 ## Ejecutar en Windows
 
 ### Opción sencilla

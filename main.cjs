@@ -365,7 +365,7 @@ async function createWindow(smoke = false) {
     backgroundColor: '#06070b',
     title: 'Synapse Labs Trading Bot',
     autoHideMenuBar: true,
-    icon: path.join(APP_ROOT, 'assets', 'images', 'Favicon Synapse Labs.ico'),
+    icon: path.join(APP_ROOT, 'build', 'icon.ico'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,
