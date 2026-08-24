@@ -2,7 +2,7 @@
 name: parameter-rail-no-scroll
 description: "Use when removing Arrow's Parameters scrollbar."
 version: 1.0.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:

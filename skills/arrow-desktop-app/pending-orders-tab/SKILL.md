@@ -2,7 +2,7 @@
 name: pending-orders-tab
 description: "Use for Arrow desktop pending orders tab."
 version: 0.1.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:

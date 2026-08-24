@@ -2,7 +2,7 @@
 name: browser-style-data-tabs
 description: "Use for Arrow desktop browser-style data tabs."
 version: 0.1.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:

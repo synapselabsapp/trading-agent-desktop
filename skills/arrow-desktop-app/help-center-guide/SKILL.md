@@ -2,7 +2,7 @@
 name: help-center-guide
 description: "Use when adding Arrow's web Help guide."
 version: 2.0.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:

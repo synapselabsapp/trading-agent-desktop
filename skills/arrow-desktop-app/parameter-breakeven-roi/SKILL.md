@@ -2,7 +2,7 @@
 name: parameter-breakeven-roi
 description: "Use for Arrow desktop app breakeven ROI changes."
 version: 0.1.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:

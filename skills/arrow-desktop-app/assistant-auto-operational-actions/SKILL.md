@@ -2,7 +2,7 @@
 name: assistant-auto-operational-actions
 description: "Use for Arrow desktop app automatic monitor/close actions."
 version: 0.1.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:

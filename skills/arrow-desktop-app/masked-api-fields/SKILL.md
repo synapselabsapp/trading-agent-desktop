@@ -2,7 +2,7 @@
 name: masked-api-fields
 description: "Use for Arrow desktop masked saved API fields."
 version: 0.1.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:

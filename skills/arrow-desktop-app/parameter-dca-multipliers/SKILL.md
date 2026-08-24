@@ -2,7 +2,7 @@
 name: parameter-dca-multipliers
 description: "Use for Arrow desktop app DCA multiplier changes."
 version: 0.1.0
-author: Omar Hernandez, Hermes Agent
+author: Synapse Labs, Hermes Agent
 license: MIT
 platforms: [windows]
 metadata:
